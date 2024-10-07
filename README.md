@@ -26,5 +26,4 @@
 
 O projeto visa facilitar a análise de avaliações de produtos, permitindo a identificação de padrões e sentimentos nas opiniões dos consumidores, assim como possibilitar melhorias contínuas no processo de processamento de linguagem natural.
 
-
-
+Grupo: Ryan Alves, Lucas Vinicius, Kevin Romero, Guilherme Duarte e Lucas Medici
