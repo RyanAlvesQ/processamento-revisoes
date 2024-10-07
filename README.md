@@ -25,6 +25,6 @@ Este projeto envolve a raspagem de avaliações de produtos de uma URL fornecida
 ## Objetivo do Projeto:
 
 O projeto visa facilitar a análise de avaliações de produtos, permitindo a identificação de padrões e sentimentos nas opiniões dos consumidores, assim como possibilitar melhorias contínuas no processo de processamento de linguagem natural.
-"""
+
 
 
