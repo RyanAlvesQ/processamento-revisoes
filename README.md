@@ -1,4 +1,4 @@
-## Este projeto envolve a raspagem de avaliações de produtos de uma URL fornecida, seguido de um processamento detalhado dessas avaliações. O objetivo é extrair insights valiosos a partir de textos de avaliações, realizando etapas como limpeza, tokenização e correção ortográfica.
+Este projeto envolve a raspagem de avaliações de produtos de uma URL fornecida, seguido de um processamento detalhado dessas avaliações. O objetivo é extrair insights valiosos a partir de textos de avaliações, realizando etapas como limpeza, tokenização e correção ortográfica.
 
 ## Principais Funcionalidades:
 
@@ -26,4 +26,5 @@
 
 O projeto visa facilitar a análise de avaliações de produtos, permitindo a identificação de padrões e sentimentos nas opiniões dos consumidores, assim como possibilitar melhorias contínuas no processo de processamento de linguagem natural.
 
-Grupo: Ryan Alves, Lucas Vinicius, Kevin Romero, Guilherme Duarte e Lucas Medici
+
+

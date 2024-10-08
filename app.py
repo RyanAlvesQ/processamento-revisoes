@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import re
 import time
 import nltk
+from textblob import TextBlob
 
 # Inicializar NLTK
 nltk.download('punkt')
@@ -44,6 +45,18 @@ def tokenize_nltk(text):
     end_time = time.time()
     return tokens, end_time - start_time
 
+# Função para correção de texto usando TextBlob
+def correct_text(text):
+    start_time = time.time()
+    
+    # Usando TextBlob para correção
+    blob = TextBlob(text)
+    corrected_text = str(blob.correct())
+    
+    end_time = time.time()
+    correction_time = end_time - start_time
+    return corrected_text, correction_time
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -55,6 +68,7 @@ def index():
         # Inicializando variáveis para medir os tempos totais
         clean_time_total = 0
         nltk_time_total = 0
+        correction_time_total = 0
         
         processed_reviews = []
         
@@ -67,11 +81,16 @@ def index():
             nltk_tokens, nltk_time = tokenize_nltk(" ".join(cleaned_review))
             nltk_time_total += nltk_time
             
+            # Correção de texto usando TextBlob
+            corrected_text, correction_time = correct_text(review)
+            correction_time_total += correction_time
+            
             # Adicionando os resultados processados
             processed_reviews.append({
                 'original': review,
                 'cleaned': cleaned_review,
-                'nltk_tokens': nltk_tokens
+                'nltk_tokens': nltk_tokens,
+                'corrected_text': corrected_text  # Adiciona o texto corrigido com TextBlob
             })
         
         # Retornar os resultados e os tempos de cada etapa
@@ -79,7 +98,8 @@ def index():
                                reviews=processed_reviews, 
                                scrape_time=scrape_time, 
                                clean_time=clean_time_total, 
-                               nltk_time=nltk_time_total)
+                               nltk_time=nltk_time_total, 
+                               correction_time=correction_time_total)
     return render_template('index.html')
 
 if __name__ == '__main__':

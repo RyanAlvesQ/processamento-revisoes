@@ -6,7 +6,7 @@
     <title>Processamento de Revisões</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7fa;  /* Fundo claro */
             margin: 0;
             padding: 20px;
@@ -35,10 +35,15 @@
         input[type="text"] {
             width: calc(100% - 22px);
             padding: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border: 1px solid #007bff;  /* Borda azul */
             border-radius: 5px;
             transition: border-color 0.3s; /* Transição suave na borda */
+        }
+
+        input[type="text"]:focus {
+            border-color: #0056b3;
+            outline: none;
         }
 
         button {
@@ -71,6 +76,8 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            word-wrap: break-word;
+            max-width: 400px;
         }
 
         th {
@@ -101,6 +108,40 @@
             text-align: center;
         }
 
+        @media screen and (max-width: 768px) {
+            table, th, td {
+                display: block;
+                width: 100%;
+            }
+
+            th {
+                background-color: transparent;
+                color: #007bff;
+                font-weight: bold;
+            }
+
+            td {
+                background-color: transparent;
+                padding: 10px 5px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            td:before {
+                content: attr(data-label);
+                font-weight: bold;
+                display: block;
+                margin-bottom: 5px;
+                color: #007bff;
+            }
+
+            th, td {
+                text-align: right;
+            }
+
+            td {
+                text-align: left;
+            }
+        }
     </style>
 </head>
 <body>
@@ -118,12 +159,14 @@
                 <th>Texto Original</th>
                 <th>Texto Limpo</th>
                 <th>Tokens NLTK</th>
+                <th>Texto Corrigido</th>
             </tr>
             {% for review in reviews %}
             <tr>
-                <td>{{ review.original }}</td>
-                <td>{{ review.cleaned }}</td>
-                <td>{{ review.nltk_tokens }}</td>
+                <td data-label="Texto Original">{{ review.original }}</td>
+                <td data-label="Texto Limpo">{{ review.cleaned }}</td>
+                <td data-label="Tokens NLTK">{{ review.nltk_tokens }}</td>
+                <td data-label="Texto Corrigido">{{ review.corrected_text }}</td>
             </tr>
             {% endfor %}
         </table>
@@ -133,6 +176,7 @@
             <p>Tempo de Raspagem: {{ scrape_time }} segundos</p>
             <p>Tempo de Limpeza Total: {{ clean_time }} segundos</p>
             <p>Tempo de Tokenização (NLTK): {{ nltk_time }} segundos</p>
+            <p>Tempo de Correção Total: {{ correction_time }} segundos</p>
         </div>
     {% endif %}
 </body>
